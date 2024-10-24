@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CourseProject.Models.Entities.Template
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Settings</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Template Settings</h1>
+    
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a class="nav-link active" asp-route-model="@Model" asp-action="ShowTemplate">Show created template</a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link active"  asp-action="GetTemplateSettings">General Settings</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-action="GetQuestions">Questions</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Results</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Aggregation of Results</a>
+        </li>
+    </ul>
+
+   
+</div>
+
+</body>
+</html>

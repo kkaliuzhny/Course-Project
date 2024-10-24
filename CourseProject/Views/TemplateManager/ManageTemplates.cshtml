@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model System.Collections.Generic.List<CourseProject.Models.Entities.Template>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Template Management Page</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Template Management</h1>
+    <form method="post">
+        <div class="form-group">
+            <div class="btn-group mb-3" role="group">
+                <button type="submit" formaction="@Url.Action("Edit")" class="btn btn-info">Edit</button>
+                <button type="submit" formaction="@Url.Action("Delete")" class="btn btn-warning">Delete</button>
+                <button type="submit" formaction="@Url.Action("Create")" class="btn btn-success">Create new template</button>
+            </div>
+        </div>
+        <table id="templatesTable" class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col"><input type="checkbox" id="selectAll" /></th>
+                    <th scope="col">Template Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var template in Model)
+                {
+                    <tr>
+                        <td><input type="checkbox" name="selectedItems" value="@template.Title" /></td>
+                        <td>
+                            <a asp-action="GetTemplate" asp-route-title="@template.Title" class="text-primary">
+                                @template.Title
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+</div>
+
+@section Scripts 
+{
+    <script src="~/js/checkboxManager.js"></script>
+}
+
+</body>
+</html>

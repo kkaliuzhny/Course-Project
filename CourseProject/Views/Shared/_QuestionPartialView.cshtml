@@ -1,0 +1,26 @@
+﻿<h3>Questions</h3>
+<div id="questions-list" class="sortable"></div>
+<button id="add-question" class="btn btn-secondary mb-3" type="button">Add Question</button>
+
+<script id="question-template" type="text/template">
+    <div class="question-item mb-3">
+        <label>Question Title</label>
+        <input type="text" name="Questions[{{index}}].Title" class="form-control" />
+        <label>Description:</label>
+        <textarea name="Questions[{{index}}].Description" class="form-control"></textarea>
+        <label>Type:</label>
+        <select name="Questions[{{index}}].Type" class="form-control">
+            @foreach (var type in ViewBag.QuestionTypes)
+            {
+            <option value="@type.Value">@type.Text</option>
+            }
+        </select>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="Questions[{{index}}].IsShown" id="idd">
+            <label class="form-check-label" for="idd"> Is shown </label>
+        </div>
+        <input type="hidden" name="Questions[{{index}}].Order" value="{{index}}" class="order-input" />
+        <button type="button" class="remove-question btn btn-danger">Remove Question</button>
+    </div>
+</script>
+

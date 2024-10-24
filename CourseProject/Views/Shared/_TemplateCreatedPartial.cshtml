@@ -1,0 +1,155 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Westwind.AspNetCore.Markdown
+@model CourseProject.Models.Entities.Template
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CourseProject.styles.css" asp-append-version="true" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+</head>
+<body>
+<form>
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label>Topic</label>
+        <label>@Model.Title</label>
+    </div>
+    <div  class="form-group">
+        <h3>Description</h3>
+        <div>
+            @Html.Raw(Markdown.ParseHtmlString(Model.Description)) 
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label>Topic</label>
+        <label>@Model.TopicName</label>
+    </div>
+    <div class="form-group">
+        <img src="@Model.ImageUrl">
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input"
+               @(Model.IsPublic ? "checked" : "")
+               disabled id="isShownCheckbox" />
+        <label class="form-check-label" for="isShownCheckbox">Is shown</label>
+    </div>
+    <div>
+        @foreach (var question in Model.Questions)
+        {
+            <label>Question Title </label>
+            <label>@question.Title</label>
+            <label>Question Description </label>
+            <label>@question.Description</label>
+            <label>Question Type </label>
+            <label>@question.Type</label>
+            <input class="form-check-input" value ="@question.IsShown">
+            <label class="form-check-label"> Is shown </label>
+        }
+    </div>
+
+    <h3>
+        Comments section
+    </h3>
+    <div class="form-group">
+        <ul id="commentsListId"></ul>
+        @foreach (var comment in Model.Comments)
+        {
+            <li>
+                @comment.CommentText    
+            </li>
+        }
+        <textarea id="commentTextId"></textarea>
+        <button  type="button" id="addCommentId">Add comment</button>
+    </div>
+        
+    <div class="form-group">
+        <button type="button" id="putLikeBtnId">
+            <img src="/likeBtn.jpg" style="width: 20px; height: 20px;">
+        </button>
+        <label id="likesCountLabel">@ViewBag.LikesAmount</label>
+    </div>
+    
+    <script>
+        $(document).ready(function () {
+            $("#addCommentId").click(function () {
+                var commentText = $("#commentTextId").val(); // Считываем текст из textarea
+                var userName = '@User.Identity.Name'; // Используем имя пользователя (например, из ASP.NET Identity)
+                
+                if (commentText.trim() !== "") {
+
+                    var newComment = $("<li></li>").html(
+                        "<strong>" + userName + "</strong>" + commentText 
+                    );
+                    $("#commentsListId").append(newComment); // Добавляем новый элемент в список
+                    $("#commentTextId").val(""); // Очищаем textarea
+
+                  
+                    $.ajax({
+                        url: '@Url.Action("AddComment", "TemplateManager")',
+                        type: 'POST',
+                        data: {
+                            templateId: '@Model.TemplateId', // Передаем идентификатор шаблона
+                            commentText: commentText // Передаем текст комментария
+                        },
+                        success: function (response) {
+                            console.log("Комментарий успешно добавлен");
+                        },
+                        error: function (xhr) {
+                            console.error("Ошибка при добавлении комментария:", xhr.responseText);
+                        }
+                    });
+                } else {
+                    alert("Пожалуйста, введите текст комментария");
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            let totalLikesAmount = @ViewBag.LikesAmount;
+
+            $("#putLikeBtnId").click(function () {
+               
+                $.ajax({
+                    url: '@Url.Action("AddLike", "TemplateManager")', 
+                    type: 'POST',
+                    data: {
+                        templateId: '@Model.TemplateId' 
+                    },
+                    success: function (response) 
+                    {
+                    if(response.message ==="success")
+                    {
+                        totalLikesAmount++;
+                        $("#likesCountLabel").text(totalLikesAmount);
+                        console.log("Like added successfully.");
+                        }
+                    },
+                    error: function (xhr) 
+                    {
+                        if (xhr.status === 400 && xhr.responseJSON.message!=="exist") {
+                            console.warn(xhr.responseJSON.message);
+                        } else {
+                            alert("You have already liked this template");
+                        }
+                    }
+                    
+                    
+                });
+            });
+        });
+    
+    </script>
+    
+    
+    
+</form>
+</body>
+</html>

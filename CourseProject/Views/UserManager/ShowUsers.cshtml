@@ -1,0 +1,40 @@
+﻿@using CourseProject.Models
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<UserModel>
+<h1>User Management</h1>
+<form method="post">
+    <div class="form-group">
+        <button type="submit" formaction="@Url.Action("View")" class="btn btn-info">View</button>
+        <button type="submit" formaction="@Url.Action("Block")"  class="btn btn-warning">Block</button>
+        <button type="submit" formaction="@Url.Action("Unblock")" class="btn btn-success">Unblock</button>
+        <button type="submit" formaction="@Url.Action("Delete")" class="btn btn-danger">Delete</button>
+        <button type="submit" formaction="@Url.Action("MakeAdmin")"   class="btn btn-primary">Make an admin</button>
+        <button type="submit" formaction="@Url.Action("RemoveFromAdmins")"  class="btn btn-secondary">Remove from admins</button>
+    </div>
+    <table id="usersTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="selectAll" /></th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Lockout Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                        <tr>
+                            <td><input type="checkbox" name="selectedUsers" value="@user.Email" /></td>
+                            <td>@user.Email</td>
+                            <td>@(user.Role)</td>
+                            <td>@(user.Status == null || user.Status <= DateTimeOffset.UtcNow? "Active" : "Blocked")</td>
+                        </tr>
+            }
+        </tbody>
+    </table>
+</form>
+@section Scripts 
+{
+    <script src ="~/js/checkboxManager.js"></script>
+}
+
