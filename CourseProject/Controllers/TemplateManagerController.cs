@@ -27,14 +27,12 @@ public class TemplateManagerController : Controller
         return View(templates);
     }
 
-    [HttpGet]
-    public async Task<IActionResult> ShowTemplate(Template template)
-    {
-        return Content("This feature will be implemented soon ;)");
-        //return RedirectToAction("ShowCreatedTemplate","TemplateRead",template);
-    }
-   
 
+    [HttpGet]
+    public async Task<IActionResult> ShowMsg()
+    {
+        return Content("This feature will be implemented soon");
+    }
     
     [HttpGet]
     public async Task<IActionResult> GetTemplate(string title)
@@ -43,28 +41,16 @@ public class TemplateManagerController : Controller
         return View(template);
     }
     
-    [HttpGet]
-    public async Task<IActionResult> GetQuestions(string title)
+    public async Task<IActionResult> GetTemplateSettings(string title)
     {
-        return Content("This feature will be implemented soon ;)");
-    }
-    
-   
-    
-    public async Task<IActionResult> GetTemplateSettings()
-    {
-        return RedirectToAction("ShowTemplate","Template" );
+        Template template = await _context.Templates.FirstOrDefaultAsync(t=>t.Title == title);
+        return RedirectToAction("ShowCreatedTemplate","TemplateRead",template );
     }
     private async Task<List<Template>> GetTemplatesToProcess(string[] selectedItems)
     {
         return await _context.Templates.Where(t => selectedItems.Contains(t.Title)).ToListAsync();
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Edit()
-    {
-        return Content("This feature will be implemented soon ;)");
-    }
     
     
     [HttpPost]

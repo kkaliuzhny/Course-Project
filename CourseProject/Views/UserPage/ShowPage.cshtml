@@ -9,7 +9,9 @@
 <div>
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            Main Page
+            <a class="nav-link text-dark" asp-controller="UserManager" asp-action="View">
+                Main Page
+            </a>
         </li>
         @if (User.IsInRole("Admin"))
         {
@@ -25,7 +27,9 @@
             </a>
         </li>
         <li class="nav-item">
-            Table of forms
+            <a class="nav-link text-dark" asp-controller="UserManager" asp-action="View">
+                Table of forms
+            </a>
         </li>
     </ul>
 </div>

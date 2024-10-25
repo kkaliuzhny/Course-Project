@@ -12,7 +12,7 @@
     <form method="post">
         <div class="form-group">
             <div class="btn-group mb-3" role="group">
-                <button type="submit" formaction="@Url.Action("Edit")" class="btn btn-info">Edit</button>
+                <button type="button" onclick="showNotification()" class="btn btn-info">Edit</button>
                 <button type="submit" formaction="@Url.Action("Delete")" class="btn btn-warning">Delete</button>
                 <button type="submit" formaction="@Url.Action("Create")" class="btn btn-success">Create new template</button>
             </div>
@@ -44,6 +44,11 @@
 @section Scripts 
 {
     <script src="~/js/checkboxManager.js"></script>
+    <script>
+    function showNotification() {
+        alert("This button will work soon");
+    }
+</script>
 }
 
 </body>

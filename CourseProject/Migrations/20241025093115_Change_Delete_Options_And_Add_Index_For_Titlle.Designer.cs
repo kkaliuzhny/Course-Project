@@ -4,6 +4,7 @@ using CourseProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseProject.Migrations
 {
     [DbContext(typeof(CustomFormsDbContext))]
-    partial class CustomFormsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241025093115_Change_Delete_Options_And_Add_Index_For_Titlle")]
+    partial class Change_Delete_Options_And_Add_Index_For_Titlle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,6 +195,7 @@ namespace CourseProject.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("TemplateAuthorId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Title")
@@ -234,17 +238,17 @@ namespace CourseProject.Migrations
                     b.HasData(
                         new
                         {
-                            TopicId = new Guid("21442d40-7b5b-4c69-98d0-71833b27dbbd"),
+                            TopicId = new Guid("de9eefbb-00ca-4e6c-b80e-0cb0b7d9ceb8"),
                             Name = "Education"
                         },
                         new
                         {
-                            TopicId = new Guid("e2db96fa-6513-4c94-a49e-63ad799edd2f"),
+                            TopicId = new Guid("ca7dea0d-2414-4928-8800-cbc5fd78ef8a"),
                             Name = "Quiz"
                         },
                         new
                         {
-                            TopicId = new Guid("b5499745-ff73-4e61-9eb2-3d8ee74fc64b"),
+                            TopicId = new Guid("70f81f3e-681e-4f2f-894e-b33a0a44cc0a"),
                             Name = "Other"
                         });
                 });
@@ -499,13 +503,13 @@ namespace CourseProject.Migrations
                     b.HasOne("CourseProject.Models.Entities.CustomForm", "customForm")
                         .WithMany("Answers")
                         .HasForeignKey("CustomFormId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.HasOne("CourseProject.Models.Entities.Question", "question")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("customForm");
@@ -518,13 +522,13 @@ namespace CourseProject.Migrations
                     b.HasOne("CourseProject.Models.Entities.Template", "template")
                         .WithMany("Comments")
                         .HasForeignKey("TemplateId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.HasOne("CourseProject.Models.Entities.User", "user")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("template");
@@ -575,7 +579,7 @@ namespace CourseProject.Migrations
                     b.HasOne("CourseProject.Models.Entities.Template", "Template")
                         .WithMany("Questions")
                         .HasForeignKey("TemplateId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Template");
@@ -586,12 +590,13 @@ namespace CourseProject.Migrations
                     b.HasOne("CourseProject.Models.Entities.User", "templateAuthor")
                         .WithMany("CreatedTemplates")
                         .HasForeignKey("TemplateAuthorId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.HasOne("CourseProject.Models.Entities.Topic", "TopicName")
                         .WithMany("Templates")
                         .HasForeignKey("TopicId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("TopicName");

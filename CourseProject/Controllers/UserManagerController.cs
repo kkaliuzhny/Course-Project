@@ -63,10 +63,10 @@ namespace CourseProject.Controllers
             return selectedItems.Contains(currentUserEmail);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> View(string[] selectedItems)
+        [HttpGet]
+        public async Task<IActionResult> View()
         {
-            return Content("This feature will be implemented soon ;)");
+            return Content("This feature will be implemented soon");
         }
         
         [HttpPost]

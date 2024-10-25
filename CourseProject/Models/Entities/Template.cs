@@ -26,9 +26,9 @@ namespace CourseProject.Models.Entities
 
 		[Column(TypeName = "SMALLDATETIME")]
 		public DateTime? UpdatedAt { get; set; }
-		public string TemplateAuthorId {get;set ;}
+		public string? TemplateAuthorId {get;set ;}
 		[ForeignKey("TemplateAuthorId")]
-		public User templateAuthor { get; set; } 
+		public User? templateAuthor { get; set; } 
 
 		public Guid TopicId { get; set; }
 		[ForeignKey("TopicId")]

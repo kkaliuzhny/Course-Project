@@ -4,7 +4,7 @@
 <h1>User Management</h1>
 <form method="post">
     <div class="form-group">
-        <button type="submit" formaction="@Url.Action("View")" class="btn btn-info">View</button>
+        <button type="button" class="btn btn-info" onclick="showNotification()">View </button>
         <button type="submit" formaction="@Url.Action("Block")"  class="btn btn-warning">Block</button>
         <button type="submit" formaction="@Url.Action("Unblock")" class="btn btn-success">Unblock</button>
         <button type="submit" formaction="@Url.Action("Delete")" class="btn btn-danger">Delete</button>
@@ -36,5 +36,10 @@
 @section Scripts 
 {
     <script src ="~/js/checkboxManager.js"></script>
+    <script>
+    function showNotification() {
+        alert("This button will work soon");
+    }
+</script>
 }
 

@@ -13,99 +13,102 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 </head>
 <body>
-<form>
-    @Html.AntiForgeryToken()
-    <div class="form-group">
-        <label>Topic</label>
-        <label>@Model.Title</label>
-    </div>
-    <div  class="form-group">
-        <h3>Description</h3>
-        <div>
-            @Html.Raw(Markdown.ParseHtmlString(Model.Description)) 
-        </div>
-    </div>
-    
-    <div class="form-group">
-        <label>Topic</label>
-        <label>@Model.TopicName</label>
-    </div>
-    <div class="form-group">
-        <img src="@Model.ImageUrl">
-    </div>
-    <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input"
-               @(Model.IsPublic ? "checked" : "")
-               disabled id="isShownCheckbox" />
-        <label class="form-check-label" for="isShownCheckbox">Is shown</label>
-    </div>
-    <div>
-        @foreach (var question in Model.Questions)
-        {
-            <label>Question Title </label>
-            <label>@question.Title</label>
-            <label>Question Description </label>
-            <label>@question.Description</label>
-            <label>Question Type </label>
-            <label>@question.Type</label>
-            <input class="form-check-input" value ="@question.IsShown">
-            <label class="form-check-label"> Is shown </label>
-        }
-    </div>
+<div class="container mt-4"> 
+    <form>
+        @Html.AntiForgeryToken()
 
-    <h3>
-        Comments section
-    </h3>
-    <div class="form-group">
-        <ul id="commentsListId"></ul>
-        @foreach (var comment in Model.Comments)
-        {
-            <li>
-                @comment.CommentText    
-            </li>
-        }
-        <textarea id="commentTextId"></textarea>
-        <button  type="button" id="addCommentId">Add comment</button>
-    </div>
-        
-    <div class="form-group">
-        <button type="button" id="putLikeBtnId">
-            <img src="/likeBtn.jpg" style="width: 20px; height: 20px;">
-        </button>
-        <label id="likesCountLabel">@ViewBag.LikesAmount</label>
-    </div>
+        <div class="form-group">
+            <label for="topicLabel">Topic</label>
+            <h5 id="topicLabel">@Model.Title</h5>
+        </div>
+
+        <div class="form-group">
+            <h3>Description</h3>
+            <div>
+                @Html.Raw(Markdown.ParseHtmlString(Model.Description))
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="topicNameLabel">Topic Name</label>
+            <h5 id="topicNameLabel">@Model.TopicName</h5>
+        </div>
+
+        <div class="form-group">
+            <label>Image</label>
+            <img src="@Model.ImageUrl" class="img-fluid" alt="Topic Image"> 
+        </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" @(Model.IsPublic ? "checked" : "") disabled id="isShownCheckbox" />
+            <label class="form-check-label" for="isShownCheckbox">Is Public</label>
+        </div>
+
+        <h4>Questions</h4>
+        <div class="mb-3">
+            @foreach (var question in Model.Questions)
+            {
+            <div class="border p-3 mb-2 rounded"> 
+                <h5>Question Title: @question.Title</h5>
+                <p>Question Description: @question.Description</p>
+                <p>Question Type: @question.Type</p>
+                <div class="form-check">
+                    <input class="form-check-input" value ="@question.IsShown">
+                    <label class="form-check-label"> Is shown </label>
+                </div>
+            </div>
+            }
+        </div>
+
+        <h3>Comments Section</h3>
+        <div class="form-group">
+            <ul id="commentsListId" class="list-group mb-3"> 
+                @foreach (var comment in Model.Comments)
+                {
+                <li class="list-group-item">@comment.CommentText</li> 
+                }
+            </ul>
+            <div class="input-group">
+                <textarea id="commentTextId" class="form-control" placeholder="Add a comment..."></textarea>
+                <button type="button" id="addCommentId" class="btn btn-primary">Add Comment</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="button" id="putLikeBtnId" class="btn btn-light">
+                <img src="/likeBtn.jpg" style="width: 20px; height: 20px;" alt="Like">
+            </button>
+            <span id="likesCountLabel" class="ms-2">@ViewBag.LikesAmount</span> 
+        </div>
+
+
     
     <script>
         $(document).ready(function () {
             $("#addCommentId").click(function () {
-                var commentText = $("#commentTextId").val(); // Считываем текст из textarea
-                var userName = '@User.Identity.Name'; // Используем имя пользователя (например, из ASP.NET Identity)
+                var commentText = $("#commentTextId").val(); 
+                var userName = '@User.Identity.Name';
                 
                 if (commentText.trim() !== "") {
 
                     var newComment = $("<li></li>").html(
                         "<strong>" + userName + "</strong>" + commentText 
                     );
-                    $("#commentsListId").append(newComment); // Добавляем новый элемент в список
-                    $("#commentTextId").val(""); // Очищаем textarea
+                    $("#commentsListId").append(newComment); 
+                    $("#commentTextId").val("");
 
                   
                     $.ajax({
                         url: '@Url.Action("AddComment", "TemplateRead")',
                         type: 'POST',
                         data: {
-                            templateId: '@Model.TemplateId', // Передаем идентификатор шаблона
-                            commentText: commentText // Передаем текст комментария
+                            templateId: '@Model.TemplateId', 
+                            commentText: commentText 
                         },
-                        success: function (response) {
-                            console.log("Комментарий успешно добавлен");
-                        },
-                        error: function (xhr) {
-                            console.error("Ошибка при добавлении комментария:", xhr.responseText);
-                        }
+                       
                     });
                 } else {
-                    alert("Пожалуйста, введите текст комментария");
+                    alert("Please, input text comment");
                 }
             });
         });
@@ -147,9 +150,10 @@
         });
     
     </script>
-    
-    
-    
-</form>
+    </form>
+
+
+</div>  
+
 </body>
 </html>

@@ -12,8 +12,6 @@ namespace CourseProject.Data
         public CustomFormsDbContext(DbContextOptions<CustomFormsDbContext> options) : base(options)
         {
         }
-
-       
         public DbSet<Template> Templates { get; set; }
         public DbSet<CustomForm> CustomForms { get; set; }
         public DbSet<Answer> Answers { get; set; }
@@ -31,7 +29,7 @@ namespace CourseProject.Data
             modelBuilder.Entity<Template>().HasMany(q => q.Questions)
                 .WithOne(t => t.Template)
                 .HasForeignKey(k => k.TemplateId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<User>().HasMany(t => t.AccesibleTemplates)
                 .WithMany(u => u.UsersWithAccess)
@@ -45,12 +43,12 @@ namespace CourseProject.Data
             modelBuilder.Entity<User>().HasMany(t => t.CreatedTemplates)
                 .WithOne(u => u.templateAuthor)
                 .HasForeignKey(k => k.TemplateAuthorId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Topic>().HasMany(t => t.Templates)
                 .WithOne(t => t.TopicName)
                 .HasForeignKey(t => t.TopicId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Question>()
                 .Property(q => q.Type)
@@ -72,27 +70,31 @@ namespace CourseProject.Data
                 .HasOne(c => c.user)
                 .WithMany(u => u.Comments)
                 .HasForeignKey(c => c.UserId)
-                .OnDelete(DeleteBehavior.NoAction); // Restrict deletion for User
-
+                .OnDelete(DeleteBehavior.Cascade); 
 
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.template)
                 .WithMany(t => t.Comments)
                 .HasForeignKey(c => c.TemplateId)
-                .OnDelete(DeleteBehavior.NoAction); // Allow cascading delete for Template
+                .OnDelete(DeleteBehavior.Cascade); 
 
             modelBuilder.Entity<Answer>()
                 .HasOne(a => a.question)
                 .WithMany(q => q.Answers)
                 .HasForeignKey(a => a.QuestionId)
-                .OnDelete(DeleteBehavior.NoAction); // Указываем DeleteBehavior.Restrict
+                .OnDelete(DeleteBehavior.Cascade); 
 
             modelBuilder.Entity<Answer>()
                 .HasOne(a => a.customForm)
                 .WithMany(cf => cf.Answers)
                 .HasForeignKey(a => a.CustomFormId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Template>()
+                .HasIndex(u => new { u.Title})
+                .IsUnique()
+                .HasDatabaseName("IX_Unique_Title");
+            
             modelBuilder.Entity<User>()
                 .HasIndex(u => new { u.UserName, u.Email })
                 .IsUnique()

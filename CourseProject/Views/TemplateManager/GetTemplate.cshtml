@@ -15,21 +15,18 @@
     <h1 class="text-center mb-4">Template Settings</h1>
     
     <ul class="nav nav-tabs mb-4">
+      
         <li class="nav-item">
-            <a class="nav-link active" asp-route-model="@Model" asp-action="ShowTemplate">Show created template</a>
-        </li>
-        
-        <li class="nav-item">
-            <a class="nav-link active"  asp-action="GetTemplateSettings">General Settings</a>
+            <a class="nav-link active" asp-route-title ="@Model.Title" asp-action="GetTemplateSettings">General Settings</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" asp-action="GetQuestions">Questions</a>
+            <a class="nav-link" asp-action="ShowMsg">Questions</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Results</a>
+            <a class="nav-link" asp-action="ShowMsg">Results</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Aggregation of Results</a>
+            <a class="nav-link" asp-action="ShowMsg">Aggregation of Results</a>
         </li>
     </ul>
 

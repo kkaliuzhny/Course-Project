@@ -55,7 +55,7 @@ $('#sortOptions').change(function () {
     updateUserList();
 }); 
 
-function updateUserList() { // Opening brace 8
+function updateUserList() { 
     var sortBy = $('#sortOptions').val();
 
     users.sort(function (a, b) {
@@ -66,9 +66,8 @@ function updateUserList() { // Opening brace 8
         }
     });
 
-    // Clear current list and repopulate with sorted data
     $('#usersList').empty();
     users.forEach(function (user) {
         $('#usersList').append('<li>' + user.name + ' (' + user.email + ') <button class="remove-user btn btn-danger btn-sm">Remove</button></li>');
     });
-} // Closing brace 8
+} 
