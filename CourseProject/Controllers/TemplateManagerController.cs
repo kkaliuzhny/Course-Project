@@ -22,14 +22,18 @@ public class TemplateManagerController : Controller
     [HttpGet]
     public async Task<IActionResult> ManageTemplates()
     {
+        
         var userCurrent = await _userManager.GetUserAsync(User);
-        var templates = _context.Templates.Where(t => t.templateAuthor == userCurrent).ToList();
+        var role = (await _userManager.GetRolesAsync(userCurrent)).FirstOrDefault();
+        List<Template> templates = role == "Admin" ? await _context.Templates.ToListAsync()
+                                                    : await _context.Templates.Where(t => t.templateAuthor == userCurrent).ToListAsync();
+
         return View(templates);
     }
 
 
     [HttpGet]
-    public async Task<IActionResult> ShowMsg()
+    public IActionResult ShowMsg()
     {
         return Content("This feature will be implemented soon");
     }
@@ -54,7 +58,7 @@ public class TemplateManagerController : Controller
     
     
     [HttpPost]
-    public async Task<IActionResult> Create()
+    public IActionResult Create()
     {
         return RedirectToAction("ShowTemplate", "Template");
     }

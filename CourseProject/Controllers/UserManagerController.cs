@@ -64,7 +64,7 @@ namespace CourseProject.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> View()
+        public IActionResult ShowMsg()
         {
             return Content("This feature will be implemented soon");
         }

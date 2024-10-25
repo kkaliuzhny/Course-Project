@@ -58,7 +58,7 @@ public class TemplateReadController : Controller
     }
     
     [HttpGet]
-    public async Task<IActionResult> ShowCreatedTemplate(Template template)
+    public IActionResult ShowCreatedTemplate(Template template)
     { 
         var id = template.TemplateId;
         

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ACiFkD35x6Z0GGhkcjTh+t7XboHNGCltplLxV6b9LFo=",
+  "Hash": "iMkSfhP0NKrdpAAjYO58h4VtNQCjCi//xAUwfft/u1M=",
   "Source": "CourseProject",
   "BasePath": "_content/CourseProject",
   "Mode": "Default",
@@ -1154,23 +1154,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\ShowUsers.js"
-    },
-    {
-      "Identity": "C:\\Users\\Клим\\Desktop\\Course-Project\\CourseProject\\wwwroot\\js\\site.js",
-      "SourceId": "CourseProject",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Клим\\Desktop\\Course-Project\\CourseProject\\wwwroot\\",
-      "BasePath": "_content/CourseProject",
-      "RelativePath": "js/site.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
       "Identity": "C:\\Users\\Клим\\Desktop\\Course-Project\\CourseProject\\wwwroot\\js\\TagManager.js",

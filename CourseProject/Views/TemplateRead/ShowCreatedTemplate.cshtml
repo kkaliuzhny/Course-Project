@@ -92,7 +92,7 @@
                 if (commentText.trim() !== "") {
 
                     var newComment = $("<li></li>").html(
-                        "<strong>" + userName + "</strong>" + commentText 
+                        "<strong>" + userName + "</strong>: " + commentText 
                     );
                     $("#commentsListId").append(newComment); 
                     $("#commentTextId").val("");

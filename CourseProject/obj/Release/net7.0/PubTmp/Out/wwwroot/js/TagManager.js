@@ -4,7 +4,7 @@
         var tagValue = $("#tag-input").val().trim();
         if (tagValue) {
             addTag(tagValue);
-            $("#tag-input").val(''); // Clear the input
+            $("#tag-input").val(''); 
         }
     });
 
@@ -13,15 +13,11 @@
     {
         let tagExists = false;
 
-        // Check if the tag is already in the list by comparing input values
         $("#selected-tags li").each(function () {
-            // Get the value of the hidden input in the current <li>
             const inputValue = $(this).find('input[type="hidden"]').val().trim();
-
-            // Compare trimmed input value with the new tag
             if (inputValue === tag.trim()) {
-                tagExists = true; // Tag already exists
-                return false; // Exit loop early
+                tagExists = true; 
+                return false; 
             }
         });
 
@@ -45,7 +41,7 @@
     }
 
     $(document).on('click', '.remove-tag', function () {
-        $(this).parent().remove(); // Remove the tag from the list
+        $(this).parent().remove(); 
     });
 });
 	
