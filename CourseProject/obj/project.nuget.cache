@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "ALK4yy6KiMcTfJZj7E5jxP8JrjPPKrLFrukOE2UhR6zNkZ93zxQE/eaNPDQ9uFqn9E4acm4FSuyoCPlNej9Pag==",
+  "dgSpecHash": "WNSx7+mh6+gCeakfS1KbqEM9gUVicCZ6Lfq9u7IGKeoRPniIrKi/eKrO8pCjPpoEvwEnUT1cZtwwTfXoK/HHOw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Клим\\Desktop\\Course-Project\\CourseProject\\CourseProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Клим\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Клим\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\Клим\\.nuget\\packages\\cloudinarydotnet\\1.26.2\\cloudinarydotnet.1.26.2.nupkg.sha512",
+    "C:\\Users\\Клим\\.nuget\\packages\\developerforce.force\\2.1.0\\developerforce.force.2.1.0.nupkg.sha512",
     "C:\\Users\\Клим\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Клим\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Клим\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

@@ -291,3 +291,5 @@ C:\Users\Клим\Desktop\Course-Project\CourseProject\bin\Debug\net7.0\runtimes
 C:\Users\Клим\Desktop\Course-Project\CourseProject\bin\Debug\net7.0\Markdig.dll
 C:\Users\Клим\Desktop\Course-Project\CourseProject\bin\Debug\net7.0\Westwind.AspNetCore.Markdown.dll
 C:\Users\Клим\Desktop\Course-Project\CourseProject\bin\Debug\net7.0\CloudinaryDotNet.dll
+C:\Users\Клим\Desktop\Course-Project\CourseProject\bin\Debug\net7.0\Salesforce.Common.dll
+C:\Users\Клим\Desktop\Course-Project\CourseProject\bin\Debug\net7.0\Salesforce.Force.dll

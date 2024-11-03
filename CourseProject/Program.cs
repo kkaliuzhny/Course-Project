@@ -10,7 +10,9 @@ using Microsoft.Extensions.Hosting;
 using Westwind.AspNetCore.Markdown;
 
 var builder = WebApplication.CreateBuilder(args);
-Account account = new Account("diwwzq0co", "249617682517815", "yun22SoAmqeOtTOKSFZGiveNMIA");
+Account account = new Account(Environment.GetEnvironmentVariable("CloudinaryCloud"), 
+							  Environment.GetEnvironmentVariable("CloudinaryApiKey"),
+                              Environment.GetEnvironmentVariable("CloudinaryApiSecret"));
 Cloudinary cloudinary = new Cloudinary(account);
 
 
@@ -18,7 +20,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddMarkdown();
 builder.Services.AddSingleton(cloudinary);
 builder.Services.AddDbContext<CustomFormsDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("CustomForms")));
+options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionStrings:CustomForms")));
 
 
 builder.Services.AddIdentity<User, IdentityRole>()
@@ -63,12 +65,13 @@ using(var scope = app.Services.CreateScope())
 using (var scope = app.Services.CreateScope())
 {
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-	string email = "admin@gmail.com";
-	string name = "admin";
-	string password = "Aa123456_;";
+	string email = Environment.GetEnvironmentVariable("AdminEmail");
+	string name = Environment.GetEnvironmentVariable("AdminName"); 
+	string password = Environment.GetEnvironmentVariable("AdminPassword");
     if(await userManager.FindByEmailAsync(email) == null)
 	{
-		var user = new User();
+        
+        var user = new User();
 		user.Email = email;
 		user.UserName = name;
 		await userManager.CreateAsync(user,password);
@@ -76,6 +79,4 @@ using (var scope = app.Services.CreateScope())
 	}
    
 }
-
-
 app.Run();

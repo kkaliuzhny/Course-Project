@@ -50,7 +50,7 @@ namespace CourseProject.Controllers
         private async Task<IActionResult> RedirectCurrentUser()
         {
             await _context.SaveChangesAsync();
-            return RedirectToAction("");
+            return RedirectToAction("Index","Home");
         }
         private async Task<List<User>> GetUsersToProcess(string[] selectedItems)
         {

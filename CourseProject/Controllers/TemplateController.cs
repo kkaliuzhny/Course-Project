@@ -33,7 +33,7 @@ namespace CourseProject.Controllers
         {
             var topics = _context.Topics.ToList();
             bool isPublic = true;
-            
+         
             var questionTypes = Enum.GetValues(typeof(Question.QuestionType))
                 .Cast<Question.QuestionType>()
                 .Select(q => new SelectListItem
@@ -124,7 +124,6 @@ namespace CourseProject.Controllers
                 ImageUrl = templateModel.ImageUrl,
                 TemplateAuthorId = user.Id,
                 IsPublic = isPublic,
-               
                 Questions = questionsToSend,
                 Forms = new List<CustomForm>(),
                 Comments = new List<Comment>(), 

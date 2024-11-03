@@ -9,6 +9,7 @@
       "CourseProject/1.0.0": {
         "dependencies": {
           "CloudinaryDotNet": "1.26.2",
+          "DeveloperForce.Force": "2.1.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.20",
           "Microsoft.AspNetCore.Identity.UI": "7.0.20",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.20",
@@ -66,6 +67,21 @@
           "lib/netstandard2.0/CloudinaryDotNet.dll": {
             "assemblyVersion": "1.26.2.0",
             "fileVersion": "1.26.2.0"
+          }
+        }
+      },
+      "DeveloperForce.Force/2.1.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Salesforce.Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/netstandard2.0/Salesforce.Force.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -2841,6 +2857,13 @@
       "sha512": "sha512-JUDOUKa7T+h0nmMhBdBxCkCldN4/DIZLOlh5p30KrcBX6Spral6vxTWhzk6OH2pGd8MGL5R379EsK7tJr/IQpw==",
       "path": "cloudinarydotnet/1.26.2",
       "hashPath": "cloudinarydotnet.1.26.2.nupkg.sha512"
+    },
+    "DeveloperForce.Force/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BXpLtAv9FHEtpfNfFINFTjM66jltyqBoX/O/8gBF3TmsxuXZkrXkEn45xoW6rDMTj4KI+bHO9cxo1o0FU2nO6g==",
+      "path": "developerforce.force/2.1.0",
+      "hashPath": "developerforce.force.2.1.0.nupkg.sha512"
     },
     "Humanizer/2.14.1": {
       "type": "package",

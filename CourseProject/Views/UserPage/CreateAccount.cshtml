@@ -1,0 +1,36 @@
+﻿@model CourseProject.Models.SalesforceUserAccountModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <header>
+        <h1></h1>
+    </header>
+    <form method = "post">
+        <div class="container">
+            <div class="form-group">
+                 <label asp-for="FirstName">First Name:</label>
+            <input asp-for="FirstName" name="FirstName" required />
+            </div>
+           <div class="form-group">
+                 <label asp-for="LastName">Last Name:</label>
+            <input asp-for="LastName" name="LastName" required />
+               </div>
+          <div class="form-group">
+            <label asp-for="Email">Email:</label>
+            <input asp-for="Email" name="Email" required />
+            </div>
+            <div>
+                @if (ViewBag.ErrorMessage != null)
+                {
+                   <p>  @ViewBag.ErrorMessage  </p>
+                }
+            </div>
+            <button type="submit" formaction="@Url.Action("CreateAccount")" class="btn btn-primary">Create Account</button>
+        </div>
+    </form>
+</body>
+</html>

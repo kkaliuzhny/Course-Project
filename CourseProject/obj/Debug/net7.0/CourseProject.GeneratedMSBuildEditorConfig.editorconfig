@@ -100,8 +100,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZXJcU2hvd1VzZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Клим/Desktop/Course-Project/CourseProject/Views/UserPage/CreateAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhZ2VcQ3JlYXRlQWNjb3VudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Клим/Desktop/Course-Project/CourseProject/Views/UserPage/ShowPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhZ2VcU2hvd1BhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Клим/Desktop/Course-Project/CourseProject/Views/UserPage/SuccessfulAuthorization.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhZ2VcU3VjY2Vzc2Z1bEF1dGhvcml6YXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Клим/Desktop/Course-Project/CourseProject/Views/_ViewImports.cshtml]

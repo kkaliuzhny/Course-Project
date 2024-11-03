@@ -18,7 +18,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-group">
-            <label for="topicLabel">Topic</label>
+            <label for="topicLabel">Title</label>
             <h5 id="topicLabel">@Model.Title</h5>
         </div>
 
@@ -96,8 +96,6 @@
                     );
                     $("#commentsListId").append(newComment); 
                     $("#commentTextId").val("");
-
-                  
                     $.ajax({
                         url: '@Url.Action("AddComment", "TemplateRead")',
                         type: 'POST',
@@ -113,11 +111,9 @@
             });
         });
     </script>
-
     <script>
         $(document).ready(function () {
             let totalLikesAmount = @ViewBag.LikesAmount;
-
             $("#putLikeBtnId").click(function () {
                
                 $.ajax({
@@ -142,18 +138,12 @@
                         } else {
                             alert("You have already liked this template");
                         }
-                    }
-                    
-                    
+                    }         
                 });
             });
         });
-    
     </script>
     </form>
-
-
 </div>  
-
 </body>
 </html>
