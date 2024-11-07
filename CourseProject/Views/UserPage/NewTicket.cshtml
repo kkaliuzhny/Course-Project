@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+  </head>
+  <body>
+   <main class="container my-5">
+  <h2 class="mb-4 text-center">Create a New Ticket</h2>
+  <form asp-action="CreateTicket" method="post" class="needs-validation" novalidate>
+    <input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" />
+
+    <div class="form-group mt-3">
+        <label for="Summary" class="control-label">Summary</label>
+        <input type="text" name="Summary" class="form-control" id="Summary" placeholder="Enter a summary of the issue" required />
+        <div class="invalid-feedback">Please provide a summary for the ticket.</div>
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="Priority" class="control-label">Priority</label>
+        <select name="Priority" class="form-control" id="Priority" required>
+            <option value="">Select Priority</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+    </div>
+
+    <div class="form-group text-center mt-4">
+        <button type="submit" class="btn btn-primary">Submit Ticket</button>
+    </div>
+  </form>
+</main>
+  </body>
+</html>

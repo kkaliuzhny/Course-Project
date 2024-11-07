@@ -26,19 +26,25 @@
                 </div>
             </div>
         </nav>
-
-
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
-       @*  <div class="container">
-            &copy; 2024 - CourseProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div> *@
+        @if (User.Identity.IsAuthenticated)
+        {
+          <div class="container">
+            @{
+              var scheme = Context.Request.Scheme; 
+              var host = Context.Request.Host; 
+              var path = Context.Request.Path; 
+              var returnUrl = $"{scheme}://{host}{path}";
+             }
+            <a href="@Url.Action("NewTicket", "UserPage", new { returnUrl })">Create Ticket</a>
+          </div>
+        }
     </footer>
  @*    <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

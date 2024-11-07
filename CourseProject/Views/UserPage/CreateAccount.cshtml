@@ -2,35 +2,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+	<meta charset="utf-8" />
+	<title></title>
 </head>
 <body>
-    <header>
-        <h1></h1>
-    </header>
-    <form method = "post">
-        <div class="container">
-            <div class="form-group">
-                 <label asp-for="FirstName">First Name:</label>
-            <input asp-for="FirstName" name="FirstName" required />
-            </div>
-           <div class="form-group">
-                 <label asp-for="LastName">Last Name:</label>
-            <input asp-for="LastName" name="LastName" required />
-               </div>
-          <div class="form-group">
-            <label asp-for="Email">Email:</label>
-            <input asp-for="Email" name="Email" required />
-            </div>
-            <div>
-                @if (ViewBag.ErrorMessage != null)
-                {
-                   <p>  @ViewBag.ErrorMessage  </p>
-                }
-            </div>
-            <button type="submit" formaction="@Url.Action("CreateAccount")" class="btn btn-primary">Create Account</button>
-        </div>
-    </form>
+	<header>
+		<h4>Salesforce Account and Contact Creation</h4>
+	</header> 
+	<main>
+		<div style="margin-top: 120px" class="row ">
+
+			<div class="col-md-4 container d-flex justify-content-center">
+
+				<section>
+
+					<form method = "post">
+		
+			<div class="form-floating mb-3">
+				   <input asp-for="FirstName" class="form-control" aria-required="true" placeholder="Vasya" />
+					<label asp-for="FirstName" class="form-label">First Name</label>
+					<span asp-validation-for="FirstName" class="text-danger"></span>
+			</div>
+			<div class="form-floating mb-3">
+			 <input asp-for="LastName" class="form-control" aria-required="true" placeholder="Pupkin"/>
+			 <label asp-for="LastName" class="form-label">Last Name</label>
+			 <span asp-validation-for="LastName" class="text-danger"></span>
+			   </div>
+		   <div class="form-floating mb-3">
+			 <input asp-for="Email" class="form-control"  aria-required="true" placeholder="name@example.com" />
+					<label asp-for="Email" class="form-label">Email</label>
+					<span asp-validation-for="Email" class="text-danger"></span>
+		   </div>
+			<button type="submit" formaction="@Url.Action("CreateAccount")" class="btn btn-primary">Create Account</button>
+			  <div>
+								@if (ViewBag.ErrorMessage != null)
+								{
+								   <p>  @ViewBag.ErrorMessage  </p>
+								}
+			</div>
+	
+	</form>
+					 </section>
+			</div>
+
+		</div>
+
+
+
+	</main>
+
 </body>
 </html>
